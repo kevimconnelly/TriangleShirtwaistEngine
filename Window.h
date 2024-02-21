@@ -9,5 +9,5 @@ public:
 	void cleanup();
 
 private:
-	GLFWwindow* mwindow = nullptr;
+	GLFWwindow* mWindow = nullptr;
 };
