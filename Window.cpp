@@ -58,6 +58,8 @@ void Window::mainLoop() {
 
 void Window::cleanup() {
 	Logger::log(1, "% s: Terminating window\n", __FUNCTION__);
+	vkDestroySurfaceKHR(mInstance, mSurface, nullptr);
+	vkDestroyInstance(mInstance, nullptr);
 	glfwDestroyWindow(mWindow);
 	glfwTerminate();
 }
