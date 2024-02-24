@@ -62,5 +62,34 @@ void Window::cleanup() {
 }
 
 bool Window::initVulkan() {
-	return true;
+	VkResult result = VK_ERROR_UNKNOWN;
+
+	VkApplicationInfo mAppInfo{};
+	mAppInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+	mAppInfo.pNext = nullptr;
+
+	uint32_t extensionCount = 0;
+	const char** extensions = glfwGetRequiredInstanceExtensions(&extensionCount);
+
+	if (extensionCount == 0) {
+		Logger::log(1, "%s error: no Vulkan extensions found\n", __FUNCTION__);
+		return false;
+	}
+
+
+	mAppInfo.apiVersion = VK_MAKE_API_VERSION(0, 1, 1, 0);
+
+	VkInstanceCreateInfo mCreateInfo{};
+	mCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	mCreateInfo.pNext = nullptr;
+	mCreateInfo.pApplicationInfo = &mAppInfo;
+	mCreateInfo.enabledExtensionCount = extensionCount;
+	mCreateInfo.ppEnabledExtensionNames = extensions;
+	mCreateInfo.enabledLayerCount = 0;
+
+	result = vkCreateInstance(&mCreateInfo, nullptr, &mInstance);
+	if (result != VK_SUCCESS) {
+		Logger::log(1, "%s: Could not create Instance (%i)\n" __FUNCTION__, result);
+		return false;
+	}
 }

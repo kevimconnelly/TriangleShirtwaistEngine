@@ -13,6 +13,6 @@ public:
 private:
 	GLFWwindow* mWindow = nullptr;
 	std::string mApplicationName;
-	VkInstance mInstance();
-	VkSurfaceKHR mSurface();
+	VkInstance mInstance{};
+	VkSurfaceKHR mSurface{};
 };
