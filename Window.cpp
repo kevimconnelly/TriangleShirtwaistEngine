@@ -18,15 +18,17 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 	// set a hint for the next window created
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-	mWindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+	mApplicationName = title;
+
+	/* Vulkan needs no context */
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	mWindow = glfwCreateWindow(width, height, mApplicationName.c_str(), nullptr, nullptr);
 
 	if (!mWindow) {
 		Logger::log(1, "%s: Could not create window\n", __FUNCTION__);
 		glfwTerminate();
 		return false;
 	}
-
-	glfwMakeContextCurrent(mWindow);
 
 	if (!initVulkan()) {
 		Logger::log(1, "%s: Could not init Vulkan\n", __FUNCTION__);
