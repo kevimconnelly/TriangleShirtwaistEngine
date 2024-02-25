@@ -36,9 +36,18 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 		return false;
 	}
 
+	glfwSetWindowUserPointer(mWindow, this);
+	glfwSetWindowCloseCallback(mWindow, [](GLFWwindow* win) {
+		auto thisWindow = static_cast<Window*>(
+			glfwGetWindowUserPointer(win));
+		thisWindow->handleWindowCloseEvents();
+		}
+	);
+
 	Logger::log(1, "%s: Window successfully initialized\n", __FUNCTION__);
 	return true;
-}
+
+};
 
 void Window::mainLoop() {
 	glfwSwapInterval(1);
@@ -126,4 +135,8 @@ bool Window::initVulkan() {
 	}
 
 	return true;
+}
+
+void Window::handleWindowCloseEvents() {
+	Logger::log(1, "%s: Window got close event... bye\n", __FUNCTION__);
 }

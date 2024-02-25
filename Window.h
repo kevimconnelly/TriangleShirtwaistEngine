@@ -15,4 +15,5 @@ private:
 	std::string mApplicationName;
 	VkInstance mInstance{};
 	VkSurfaceKHR mSurface{};
+	void handleWindowCloseEvents();
 };
