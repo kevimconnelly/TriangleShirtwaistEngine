@@ -37,6 +37,11 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 	}
 
 	glfwSetWindowUserPointer(mWindow, this);
+	glfwSetKeyCallback(mWindow, [](GLFWwindow* win, int key, int scancode, int action, int mods) {
+		auto thisWindow = static_cast<Window*> (glfwGetWindowUserPointer(win));
+		thisWindow->handleKeyEvents(key, scancode, action, mods);
+		}
+	);
 	glfwSetWindowCloseCallback(mWindow, [](GLFWwindow* win) {
 		auto thisWindow = static_cast<Window*>(
 			glfwGetWindowUserPointer(win));
@@ -139,4 +144,25 @@ bool Window::initVulkan() {
 
 void Window::handleWindowCloseEvents() {
 	Logger::log(1, "%s: Window got close event... bye\n", __FUNCTION__);
+}
+
+void Window::handleKeyEvents(int key, int scancode, int action, int mods) {
+	std::string actionName;
+	switch (action) {
+	case GLFW_PRESS:
+		actionName = "pressed";
+		break;
+	case GLFW_RELEASE:
+		actionName = "released";
+		break;
+	case GLFW_REPEAT:
+		actionName = "repeated";
+		break;
+	default:
+		actionName = "invalid";
+		break;
+	}
+
+	const char* keyName = glfwGetKeyName(key, 0);
+	Logger::log(1, "%s: key %s (key %i, scancode %i) %s\n", __FUNCTION__, keyName, key, scancode, actionName.c_str());
 }

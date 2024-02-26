@@ -9,6 +9,7 @@ public:
 	bool init(unsigned int width, unsigned int height, std::string title);
 	void mainLoop();
 	void cleanup();
+	void handleKeyEvents(int key, int scancode, int action, int mods); 
 
 private:
 	GLFWwindow* mWindow = nullptr;
