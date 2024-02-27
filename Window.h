@@ -17,4 +17,5 @@ private:
 	VkInstance mInstance{};
 	VkSurfaceKHR mSurface{};
 	void handleWindowCloseEvents();
+	void handleMouseButtonEvents(int button, int action, int mods);
 };
