@@ -52,3 +52,10 @@ void OGLRenderer::draw() {
 
 	mFrameBuffer.drawToScreen();
 }
+
+void OGLRenderer::cleanup() {
+	mShader.cleanup();
+	mtex.cleanup();
+	mVertexBuffer.cleanup();
+	mFrameBuffer.cleanup();
+}
