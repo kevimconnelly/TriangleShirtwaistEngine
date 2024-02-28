@@ -151,7 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.h" />
-    <ClInclude Include="opengl\OGLRenderer.h" />
+    <ClInclude Include="OGLRenderData.h" />
+    <ClInclude Include="OGLRenderer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
