@@ -41,4 +41,14 @@ void OGLRenderer::draw() {
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_CULL_FACE);
+
+	mShader.use();
+	mTex.bind();
+	mVertexBuffer.bind();
+	mVertexBuffer.draw(GL_TRIANGLES, 0, mTriangleCount);
+	mVertexBuffer.unbind();
+	mTex.unbind();
+	mFrameBuffer.unbind();
+
+	mFrameBuffer.drawToScreen();
 }
