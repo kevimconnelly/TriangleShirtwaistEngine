@@ -146,10 +146,12 @@
     <ClCompile Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="OGLRenderer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.h" />
+    <ClInclude Include="opengl\OGLRenderer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

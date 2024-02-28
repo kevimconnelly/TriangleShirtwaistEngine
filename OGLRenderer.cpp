@@ -1,4 +1,5 @@
 #include "OGLRenderer.h"
+#include "Logger.h"
 
 bool OGLRenderer::init(unsigned int width, unsigned int height) {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -23,4 +24,21 @@ bool OGLRenderer::init(unsigned int width, unsigned int height) {
 	}
 
 	return true;
+}
+
+void OGLRenderer::setSize(unsigned int width, unsigned int height) {
+	mTriangleCount = vertexData.vertices.size();
+	glViewport(0, 0, width, height);
+}
+
+void OGLRenderer::uploadData(OGLMesh vertexData) {
+	mTriangleCount = vertexData.vertices.size();
+	mVertexBuffer.uploadData(vertexData);
+}
+
+void OGLRenderer::draw() {
+	mFrameBuffer.bind();
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_CULL_FACE);
 }

@@ -27,12 +27,18 @@
     <ClCompile Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OGLRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl\OGLRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
