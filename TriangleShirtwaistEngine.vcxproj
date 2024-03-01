@@ -144,15 +144,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.cpp" />
+    <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OGLRenderer.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.h" />
+    <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="OGLRenderData.h" />
     <ClInclude Include="OGLRenderer.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
