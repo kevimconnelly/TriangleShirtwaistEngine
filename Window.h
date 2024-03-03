@@ -1,21 +1,24 @@
 #pragma once
-#include<string>
-#include <vulkan/vulkan.h>
-#include<GLFW/glfw3.h>
+#include <string>
+#include <memory>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "OGLRenderer.h"
+#include "Model.h"
 
 class Window {
 public:
-	bool initVulkan();
-	bool init(unsigned int width, unsigned int height, std::string title);
-	void mainLoop();
-	void cleanup();
-	void handleKeyEvents(int key, int scancode, int action, int mods); 
+    bool init(unsigned int width, unsigned int height, std::string title);
+    void mainLoop();
+    void cleanup();
 
 private:
-	GLFWwindow* mWindow = nullptr;
-	std::string mApplicationName;
-	VkInstance mInstance{};
-	VkSurfaceKHR mSurface{};
-	void handleWindowCloseEvents();
-	void handleMouseButtonEvents(int button, int action, int mods);
+    GLFWwindow* mWindow = nullptr;
+
+    std::unique_ptr<OGLRenderer> mRenderer;
+    std::unique_ptr<Model> mModel;
+
+    unsigned int mScreenWidth = 640;
+    unsigned int mScreenHeight = 480;
 };
