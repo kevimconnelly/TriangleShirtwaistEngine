@@ -63,4 +63,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="basic.vert" />
+    <None Include="basic.frag" />
+  </ItemGroup>
 </Project>
