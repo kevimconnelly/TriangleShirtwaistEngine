@@ -9,7 +9,7 @@ bool OGLRenderer::init(unsigned int width, unsigned int height) {
         return false;
     }
 
-    if (!GLAD_GL_VERSION_4_6) {
+    if (/*!GLAD_GL_VERSION_4_6*/ false) {
         Logger::log(1, "%s error: failed to get at least OpenGL 4.6\n", __FUNCTION__);
         return false;
     }
