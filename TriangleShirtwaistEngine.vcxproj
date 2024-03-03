@@ -147,6 +147,7 @@
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="OGLRenderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter01\01_simple_window\tools\Logger.h" />
     <ClInclude Include="Framebuffer.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="OGLRenderData.h" />
     <ClInclude Include="OGLRenderer.h" />
     <ClInclude Include="Shader.h" />
@@ -166,6 +168,9 @@
   <ItemGroup>
     <None Include="basic.frag" />
     <None Include="basic.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter02\opengl_renderer\textures\crate.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
