@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 #include <memory>
-#include <glad/glad.h>
+#include <vulkan/vulkan.h>
 #include <GLFW/glfw3.h>
 
-#include "OGLRenderer.h"
+#include "VkRenderer.h"
 #include "Model.h"
 
 class Window {
@@ -16,9 +16,6 @@ public:
 private:
     GLFWwindow* mWindow = nullptr;
 
-    std::unique_ptr<OGLRenderer> mRenderer;
+    std::unique_ptr<VkRenderer> mRenderer;
     std::unique_ptr<Model> mModel;
-
-    unsigned int mScreenWidth = 640;
-    unsigned int mScreenHeight = 480;
 };
