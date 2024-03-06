@@ -3,15 +3,18 @@
 
 bool Window::init(unsigned int width, unsigned int height, std::string title) {
     if (!glfwInit()) {
-        Logger::log(1, "%s: glfwInit() error\n", __FUNCTION__);
+        Logger::log(1, "%s error: glfwInit() failed\n", __FUNCTION__);
         return false;
     }
 
-    /* set a "hint" for the NEXT window created*/
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    if (!glfwVulkanSupported()) {
+        glfwTerminate();
+        Logger::log(1, "%s error: Vulkan is not supported\n", __FUNCTION__);
+        return false;
+    }
 
+    /* Vulkan needs no context */
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     mWindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 
     if (!mWindow) {
@@ -20,18 +23,16 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
         return false;
     }
 
-    glfwMakeContextCurrent(mWindow);
-
-    mRenderer = std::make_unique<OGLRenderer>();
+    mRenderer = std::make_unique<VkRenderer>(mWindow);
     if (!mRenderer->init(width, height)) {
         glfwTerminate();
-        Logger::log(1, "%s error: Could not init OpenGL\n", __FUNCTION__);
+        Logger::log(1, "%s error: Could not init Vulkan\n", __FUNCTION__);
         return false;
     }
 
     glfwSetWindowUserPointer(mWindow, mRenderer.get());
     glfwSetWindowSizeCallback(mWindow, [](GLFWwindow* win, int width, int height) {
-        auto renderer = static_cast<OGLRenderer*>(glfwGetWindowUserPointer(win));
+        auto renderer = static_cast<VkRenderer*>(glfwGetWindowUserPointer(win));
         renderer->setSize(width, height);
         }
     );
@@ -40,23 +41,19 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
     mModel->init();
     Logger::log(1, "%s: mockup model data loaded\n", __FUNCTION__);
 
-    Logger::log(1, "%s: Window with OpenGL 4.6 successfully initialized\n", __FUNCTION__);
+    Logger::log(1, "%s: Window with Vulkan successfully initialized\n", __FUNCTION__);
     return true;
 }
 
 
 void Window::mainLoop() {
-    /* force VSYNC */
-    glfwSwapInterval(1);
-
     /* upload only once for now */
     mRenderer->uploadData(mModel->getVertexData());
 
     while (!glfwWindowShouldClose(mWindow)) {
-        mRenderer->draw();
-
-        /* swap buffers */
-        glfwSwapBuffers(mWindow);
+        if (!mRenderer->draw()) {
+            break;
+        }
 
         /* poll events in a loop */
         glfwPollEvents();
