@@ -94,16 +94,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter02\opengl_renderer\textures\crate.png">
+      <Filter>textures</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="basic.frag">
       <Filter>shader</Filter>
     </None>
     <None Include="basic.vert">
       <Filter>shader</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\UntitledEngine\Cpp-Game-Animation-Programming-Second-Edition\chapter02\opengl_renderer\textures\crate.png">
-      <Filter>textures</Filter>
-    </Image>
   </ItemGroup>
 </Project>
